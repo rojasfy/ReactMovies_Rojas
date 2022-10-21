@@ -16,7 +16,7 @@ function App() {
 <BrowserRouter>
 <NavBar />
 <Routes>
-<Route path='/' element={<ItemListContainer greeting='Bienvenidos a mi ' />} />
+<Route path='/ReactMovies_Rojas' element={<ItemListContainer greeting='Bienvenidos a mi ' />} />
 <Route path='/genero/:generoID' element={<ItemListContainer greeting='Bienvenidos a mi ' />} />
 <Route path='/detalle/:detalleID' element={<ItemDetailContainer />} />
 <Route path='/cart' element={< CartWidget  /> } />
