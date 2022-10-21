@@ -9,15 +9,11 @@ import Error404 from "./components/Error404";
 function App() {
   return (
     <>
-      <BrowserRouter>
+      <BrowserRouter basename="/ReactMovies_Rojas">
         <NavBar />
         <Routes>
           <Route
             path="/"
-            element={<ItemListContainer greeting="Bienvenidos a mi " />}
-          />
-          <Route
-            path="/ReactMovies_Rojas"
             element={<ItemListContainer greeting="Bienvenidos a mi " />}
           />
           <Route
