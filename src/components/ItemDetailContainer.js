@@ -7,6 +7,7 @@ const ItemDetailContainer = () => {
   const [data, setData] = useState([]);
   const { detalleID } = useParams();
 
+
   useEffect(() => {
     const getData = new Promise((resolve) => {
       setTimeout(() => {
@@ -17,9 +18,13 @@ const ItemDetailContainer = () => {
     getData.then((res) =>
       setData(res.find((movie) => movie.id === parseInt(detalleID)))
     );
+
   }, []);
 
-  return <ItemDetail data={data} />;
+  
+
+
+  return <ItemDetail data={data}/>;
 };
 
 export default ItemDetailContainer;

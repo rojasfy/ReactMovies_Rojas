@@ -56,9 +56,9 @@ const NavBar = () => {
             <Link className="h-16 p-2 mb-0 btn btn-ghost normal-case text-base">Quienes Somos</Link>
           </li>
           <li>
-            <NavLink to="/cart" className="h-16 p-1 mb-0 ">
+            <Link className="h-16 p-1 mb-0 ">
               <CartWidget />
-            </NavLink>
+            </Link>
           </li>
         </ul>
       </div>
