@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/ReactMovies_Rojas/static/css/main.9f1b5393.css",
-    "main.js": "/ReactMovies_Rojas/static/js/main.b7b1c12e.js",
+    "main.css": "/ReactMovies_Rojas/static/css/main.e2905abd.css",
+    "main.js": "/ReactMovies_Rojas/static/js/main.8b8dfb12.js",
     "static/js/787.b1a8c4cc.chunk.js": "/ReactMovies_Rojas/static/js/787.b1a8c4cc.chunk.js",
     "index.html": "/ReactMovies_Rojas/index.html",
-    "main.9f1b5393.css.map": "/ReactMovies_Rojas/static/css/main.9f1b5393.css.map",
-    "main.b7b1c12e.js.map": "/ReactMovies_Rojas/static/js/main.b7b1c12e.js.map",
+    "main.e2905abd.css.map": "/ReactMovies_Rojas/static/css/main.e2905abd.css.map",
+    "main.8b8dfb12.js.map": "/ReactMovies_Rojas/static/js/main.8b8dfb12.js.map",
     "787.b1a8c4cc.chunk.js.map": "/ReactMovies_Rojas/static/js/787.b1a8c4cc.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.9f1b5393.css",
-    "static/js/main.b7b1c12e.js"
+    "static/css/main.e2905abd.css",
+    "static/js/main.8b8dfb12.js"
   ]
 }
