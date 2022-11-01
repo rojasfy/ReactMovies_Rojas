@@ -1,30 +1,20 @@
 import React, { useState, useEffect } from "react";
 import ItemDetail from "./ItemDetail";
-import movies from "../movies.json";
+// import movies from "../movies.json";
+import { doc, getDoc, getFirestore } from "firebase/firestore";
 import { useParams } from "react-router-dom";
 
 const ItemDetailContainer = () => {
   const [data, setData] = useState([]);
   const { detalleID } = useParams();
 
-
   useEffect(() => {
-    const getData = new Promise((resolve) => {
-      setTimeout(() => {
-        resolve(movies);
-      }, 1000);
-    });
+    const db = getFirestore();
+    const item = doc(db, "movies", detalleID);
+    getDoc(item).then((res) => setData({ id: res.id, ...res.data() }));
+  }, [detalleID]);
 
-    getData.then((res) =>
-      setData(res.find((movie) => movie.id === parseInt(detalleID)))
-    );
-
-  }, []);
-
-  
-
-
-  return <ItemDetail data={data}/>;
+  return <ItemDetail data={data} />;
 };
 
 export default ItemDetailContainer;
