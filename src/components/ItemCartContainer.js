@@ -2,9 +2,41 @@ import React from "react";
 import { Link } from "react-router-dom";
 import ItemCart from "./ItemCart";
 import { useCartContext } from "../context/CartContext";
+import { addDoc, collection, getFirestore } from "firebase/firestore";
+import Swal from "sweetalert2"
 
 const ItemCartContainer = () => {
   const { cart, totalPrice } = useCartContext();
+
+  const user = {
+    name: "Freddy",
+    email: "Freddyrg@gmail.com",
+    phone: "030180",
+    address: "xxxxxx",
+  };
+  const order = {
+    buyer: user,
+    items: cart.map((product) => ({
+      id: product.id,
+      title: product.title,
+      price: product.price,
+      quantity: product.quantity,
+    })),
+    total: totalPrice(),
+  };
+
+  const handleClick = () => {
+    const db = getFirestore();
+    const ordersCollection = collection(db, "orders");
+    addDoc(ordersCollection, order).then(({ id }) => console.log(id));
+    Swal.fire({
+      position: 'top',
+      icon: 'success',
+      title: 'Orden emitida con éxito',
+      showConfirmButton: false,
+       timer: 3000
+    })
+  };
 
   if (cart.length === 0) {
     return (
@@ -51,6 +83,14 @@ const ItemCartContainer = () => {
         <p class="text-base font-medium text-blue-600  dark:text-blue-500">
           ${totalPrice()}
         </p>
+      </div>
+      <div className="card-actions justify-end">
+        <button
+          className=" font-semibold relative inline-block text-base font-medium text-[#FF6A3D] border border-current rounded-lg m-auto mt-6 mb-2 py-2 px-3 "
+          onClick={handleClick}
+        >
+          Emitir orden
+        </button>
       </div>
     </div>
   );
