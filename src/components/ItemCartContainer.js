@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import ItemCart from "./ItemCart";
 import { useCartContext } from "../context/CartContext";
 import { addDoc, collection, getFirestore } from "firebase/firestore";
 import Swal from "sweetalert2";
+import "animate.css";
 
 const ItemCartContainer = () => {
   const { cart, totalPrice } = useCartContext();
+  const [idCollection, setidCollection] = useState([]);
 
   const user = {
     name: "Freddy",
@@ -28,13 +30,19 @@ const ItemCartContainer = () => {
   const handleClick = () => {
     const db = getFirestore();
     const ordersCollection = collection(db, "orders");
-    addDoc(ordersCollection, order).then(({ id }) => console.log(id));
+    addDoc(ordersCollection, order).then(({ id }) => setidCollection(id));
     Swal.fire({
-      position: "top",
       icon: "success",
-      title: "Orden emitida con éxito",
+      title: "Éxito",
+      text: `Tu orden #${idCollection} fue emitida con éxito`,
       showConfirmButton: false,
-      timer: 2000,
+      timer: 6000,
+      showClass: {
+        popup: "animate__animated animate__fadeInDown",
+      },
+      hideClass: {
+        popup: "animate__animated animate__fadeOutUp",
+      },
     });
   };
 
