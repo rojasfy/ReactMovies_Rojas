@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import ItemCart from "./ItemCart";
 import { useCartContext } from "../context/CartContext";
 import { addDoc, collection, getFirestore } from "firebase/firestore";
-import Swal from "sweetalert2"
+import Swal from "sweetalert2";
 
 const ItemCartContainer = () => {
   const { cart, totalPrice } = useCartContext();
@@ -30,12 +30,12 @@ const ItemCartContainer = () => {
     const ordersCollection = collection(db, "orders");
     addDoc(ordersCollection, order).then(({ id }) => console.log(id));
     Swal.fire({
-      position: 'top',
-      icon: 'success',
-      title: 'Orden emitida con éxito',
+      position: "top",
+      icon: "success",
+      title: "Orden emitida con éxito",
       showConfirmButton: false,
-       timer: 3000
-    })
+      timer: 2000,
+    });
   };
 
   if (cart.length === 0) {
@@ -84,13 +84,19 @@ const ItemCartContainer = () => {
           ${totalPrice()}
         </p>
       </div>
-      <div className="card-actions justify-end">
+      <div className="card-actions flex-col justify-end">
         <button
           className=" font-semibold relative inline-block text-base font-medium text-[#FF6A3D] border border-current rounded-lg m-auto mt-6 mb-2 py-2 px-3 "
           onClick={handleClick}
         >
           Emitir orden
         </button>
+        <Link
+          to="/"
+          className="text-sm font-medium text-blue-600 hover:underline dark:text-blue-500 m-auto"
+        >
+          Ver más productos
+        </Link>
       </div>
     </div>
   );
