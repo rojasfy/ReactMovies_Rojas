@@ -5,19 +5,17 @@ import { useCartContext } from "../context/CartContext";
 import { addDoc, collection, getFirestore } from "firebase/firestore";
 import Swal from "sweetalert2";
 import "animate.css";
+import { useUseContext } from "../context/UserProvider";
 
 const ItemCartContainer = () => {
   const { cart, totalPrice } = useCartContext();
+  const { valorUser } = useUseContext();
   const [idCollection, setidCollection] = useState([]);
 
-  const user = {
-    name: "Freddy",
-    email: "Freddyrg@gmail.com",
-    phone: "030180",
-    address: "xxxxxx",
-  };
+  console.log(valorUser);
+  console.log(Object.keys(valorUser).length)
   const order = {
-    buyer: user,
+    buyer: valorUser,
     items: cart.map((product) => ({
       id: product.id,
       title: product.title,
@@ -28,22 +26,26 @@ const ItemCartContainer = () => {
   };
 
   const handleClick = () => {
-    const db = getFirestore();
-    const ordersCollection = collection(db, "orders");
-    addDoc(ordersCollection, order).then(({ id }) => setidCollection(id));
-    Swal.fire({
-      icon: "success",
-      title: "Éxito",
-      text: `Tu orden #${idCollection} fue emitida con éxito`,
-      showConfirmButton: false,
-      timer: 6000,
-      showClass: {
-        popup: "animate__animated animate__fadeInDown",
-      },
-      hideClass: {
-        popup: "animate__animated animate__fadeOutUp",
-      },
-    });
+    if (Object.keys(valorUser).length=== 0) {
+      Swal.fire("Debes crear tu usuario");
+    } else {
+      const db = getFirestore();
+      const ordersCollection = collection(db, "orders");
+      addDoc(ordersCollection, order).then(({ id }) => setidCollection(id));
+      Swal.fire({
+        icon: "success",
+        title: "Éxito",
+        text: `Tu orden #${idCollection} fue emitida con éxito`,
+        showConfirmButton: false,
+        timer: 3000,
+        showClass: {
+          popup: "animate__animated animate__fadeInDown",
+        },
+        hideClass: {
+          popup: "animate__animated animate__fadeOutUp",
+        },
+      });
+    }
   };
 
   if (cart.length === 0) {
