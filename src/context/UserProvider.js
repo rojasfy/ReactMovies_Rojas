@@ -10,15 +10,15 @@ const UserProvider = ({ children }) => {
     setUpuser(() => dato);
   }
 
-const valorUser= upuser
-console.log(valorUser);
+
+console.log(upuser);
 
   return (
     <>
       <userContext.Provider
         value={{
           ProviderUser,
-          valorUser,
+          upuser,
         }}
       >
         {children}

@@ -9,13 +9,14 @@ import { useUseContext } from "../context/UserProvider";
 
 const ItemCartContainer = () => {
   const { cart, totalPrice } = useCartContext();
-  const { valorUser } = useUseContext();
+  const { upuser } = useUseContext();
   const [idCollection, setidCollection] = useState([]);
 
-  console.log(valorUser);
-  console.log(Object.keys(valorUser).length)
+  console.log(upuser);
+  console.log(Object.keys(upuser).length)
+  
   const order = {
-    buyer: valorUser,
+    buyer: upuser,
     items: cart.map((product) => ({
       id: product.id,
       title: product.title,
@@ -26,7 +27,7 @@ const ItemCartContainer = () => {
   };
 
   const handleClick = () => {
-    if (Object.keys(valorUser).length=== 0) {
+    if (Object.keys(upuser).length=== 0) {
       Swal.fire("Debes crear tu usuario");
     } else {
       const db = getFirestore();
