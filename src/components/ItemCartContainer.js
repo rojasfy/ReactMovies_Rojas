@@ -8,7 +8,7 @@ import "animate.css";
 import { useUseContext } from "../context/UserProvider";
 
 const ItemCartContainer = () => {
-  const { cart, totalPrice } = useCartContext();
+  const { cart, totalPrice , clearCart} = useCartContext();
   const { upuser } = useUseContext();
   const [idCollection, setidCollection] = useState([]);
 
@@ -46,6 +46,7 @@ const ItemCartContainer = () => {
           popup: "animate__animated animate__fadeOutUp",
         },
       });
+      clearCart();
     }
   };
 
